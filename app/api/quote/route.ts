@@ -29,3 +29,5 @@ export function GET() {
 
   return new Response(quote);
 }
+
+export const dynamic = 'force-dynamic'

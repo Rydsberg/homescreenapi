@@ -27,3 +27,5 @@ export async function GET(req: Request) {
   })
   return Response.json(data);
 }
+
+export const dynamic = 'force-dynamic'

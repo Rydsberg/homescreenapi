@@ -1,0 +1,51 @@
+import { IM_Fell_Double_Pica } from "next/font/google";
+import Image from "next/image";
+import ornament from "./christmas_ornament_small.png";
+import skolmaten from "./skolmaten-logo.svg";
+import lerumslogga from "./lerumslogga.svg";
+import Script from "next/script";
+
+const imfell = IM_Fell_Double_Pica({ subsets: ["latin"], weight: "400" });
+
+function Clock() {
+  
+}
+
+export default function Page() {
+  return (
+    <>
+      <div className='row'>
+        <div className='column'>
+          <div className='time-div'>
+            <Image alt='' id='ornament' src={ornament} />
+            <script src="/scripts/clock.js" type='text/javascript'></script>
+          </div>
+
+          <div className='rss-div'>
+            <Image alt='' className='skolmaten-logo' src={skolmaten} width={75} height={75} />
+            <script
+              src='https://rss2html--evla03.repl.co/feed.js?url=https://skolmaten.se/rydsbergsskolan/rss/weeks/'
+              className='rss'
+              item-width='50%'
+            ></script>
+          </div>
+        </div>
+        <div className='column'>
+          <div id='vasttrafik'>
+            <div id='vast-hack'>Uppdaterar...</div>
+            Uppdaterar...
+          </div>
+          <p id='text-box'></p>
+          <script src='fetch.js'></script>
+        </div>
+      </div>
+      <div id='footer'>
+        <div id='quote' className={"row " + imfell.className}>
+          <script src='get_quote.js'></script>
+        </div>
+      </div>
+      <Image alt="" id='lerumlogo' src={lerumslogga} />
+      <script src='vasttrafik.js' type='text/javascript'></script>
+    </>
+  );
+}

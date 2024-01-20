@@ -11,7 +11,7 @@ xhrskol.send();
 
 function process() {
   if (xhrskol.readyState == 4) {
-    console.log(xhrskol.responseText);
+    // console.log(xhrskol.responseText);
     /** @type {import('../app/api/skolmaten/route').SkolmatenType} */
     var resp = JSON.parse(xhrskol.responseText);
     // var titlecont = document.createElement("h3");

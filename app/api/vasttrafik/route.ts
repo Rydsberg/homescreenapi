@@ -39,7 +39,6 @@ export async function GET() {
 
   const data = await api.stopAreasStopAreaGidDeparturesGet({
     stopAreaGid: "9021014017122000",
-    timeSpanInMinutes: 1439,
   });
 
   const items = data.results?.map(item => ({

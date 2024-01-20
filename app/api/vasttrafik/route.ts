@@ -1,4 +1,4 @@
-import { BaseAPI, BASE_PATH, Configuration, LocationsApi, StopAreasApi } from "./typescript-fetch-client";
+import { BaseAPI, Configuration, StopAreasApi } from "./typescript-fetch-client";
 
 class API extends BaseAPI {
   token() {
@@ -12,6 +12,18 @@ class API extends BaseAPI {
       body: "grant_type=client_credentials",
     });
   }
+}
+
+const fomratter = new Intl.DateTimeFormat("sv-SE", {
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+function formatTime(time?: string | null) {
+  if (!time) return time;
+  const date = new Date(time);
+
+  return `${fomratter.format(date)}`;
 }
 
 async function getToken() {
@@ -35,9 +47,9 @@ export async function GET() {
     line: item.serviceJourney?.line?.designation,
     background: item.serviceJourney?.line?.backgroundColor,
     wheelchair: item.serviceJourney?.line?.isWheelchairAccessible,
-    time: item.plannedTime,
+    time: formatTime(item.plannedTime),
+    estTime: formatTime(item.estimatedTime),
     platform: item.stopPoint.platform,
-    estimatedTime: item.estimatedTime,
   }));
 
   return Response.json(items);

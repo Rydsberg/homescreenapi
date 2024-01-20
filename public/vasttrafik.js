@@ -3,10 +3,6 @@ var shouldTestEmpty = false;
 // window.hrMin = "15:30";
 // window.daDate = "2019-12-10";
 
-var melon = "YVY5alFrVkZSRFZ3ZDBodk5WcGFjM0JzYjJGSWRFOVhWVE0wWVRwWlZ6YzVkR0ZtY0RGYVdYWnlXV2syTmsxNGIxQjJSbkJHU1hkaA==";
-
-var apple = "QXV0aG9yaXphdGlvbg==";
-
 function update() {
   var xhr_v = new XMLHttpRequest();
 
@@ -21,20 +17,14 @@ function update() {
       if (shouldTestEmpty) json = null;
       var busses = [];
       // console.log(json);
-      if (json) {
-        if (json.length > 1) {
-          for (var i = 0; i < json.length; i++) {
-            var bus = json[i];
-            if (bus.time === bus.estTime) {
-              bus.time = undefined;
-            }
-            var checkApp = bus.booking ? true : false;
-            busses.push({ line: bus.line, direction: bus.direction, time: bus.time, newTime: bus.estTime, color: bus.background, checkApp: checkApp });
+      if (json && json.length > 0) {
+        for (var i = 0; i < json.length; i++) {
+          var bus = json[i];
+          if (bus.time === bus.estTime) {
+            bus.time = undefined;
           }
-        } else {
-          if (json.rtTime === json.time) json.rtTime = undefined;
-          var checkApp = json.booking ? true : false;
-          busses.push({ line: json.sname, direction: json.direction, time: json.time, newTime: json.rtTime, color: json.bgColor, checkApp: checkApp });
+          var checkApp = bus.booking ? true : false;
+          busses.push({ line: bus.line, direction: bus.direction, time: bus.time, newTime: bus.estTime, color: bus.background, checkApp: checkApp });
         }
       } else {
         vastContainer.innerHTML = "<nobusses>Inga avgångar</nobusses>";

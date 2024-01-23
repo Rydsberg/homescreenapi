@@ -53,3 +53,5 @@ export async function GET() {
 
   return Response.json(items);
 }
+
+export const dynamic = "force-dynamic";

@@ -192,9 +192,7 @@ a {
     position: relative;
 }
 #vasttrafik div, #vasttrafik nobusses {
-    margin: 8px 0;
-    width: 60%;
-    
+    margin: 8px 0;    
 }
 
 #vasttrafik::before {

@@ -21,11 +21,12 @@ function update() {
         for (var i = 0; i < json.length; i++) {
           var bus = json[i];
           if (bus.time === bus.estTime) {
-            bus.time = undefined;
+            bus.estTime = undefined;
           }
           var checkApp = bus.booking ? true : false;
           busses.push({ line: bus.line, direction: bus.direction, time: bus.time, newTime: bus.estTime, color: bus.background, checkApp: checkApp });
         }
+        console.log(busses);
       } else {
         vastContainer.innerHTML = "<nobusses>Inga avgångar</nobusses>";
         return;

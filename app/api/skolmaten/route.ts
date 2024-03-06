@@ -16,7 +16,6 @@ export async function GET(req: Request) {
   }
   const now = new Date();
   const { days } = (await getMenu(+id, now.getFullYear(), getWeek(now))).menu.weeks[0];
-  console.log(days);
   const data = days.map(day => {
     const isoDateStrForDay = `${day.year}-${day.month}-${day.day}`;
     const date = new Date(isoDateStrForDay);

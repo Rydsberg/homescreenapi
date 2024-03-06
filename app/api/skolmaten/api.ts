@@ -10,13 +10,21 @@ interface MealAttributes {
 //   year: number;
 // }
 
-interface Day {
+interface NormalDay {
   meals: MealAttributes[];
-  weekOfYear: number;
   year: number;
   month: number;
   day: number;
 }
+
+interface NoMenuDay {
+  reason: string;
+  year: number;
+  month: number;
+  day: number;
+}
+
+type Day = NormalDay | NoMenuDay;
 
 interface Station {
   name: string;

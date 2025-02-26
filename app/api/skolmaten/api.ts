@@ -72,27 +72,27 @@ interface MenuResponse {
 
 const entrypoint: string = "https://skolmaten.se/api/4/";
 const headers: Record<string, string> = {
-  "client-token": "kiav1d2b2w40bvbfvjmy",
-  "client-version-token": "pdmg5d4tkgq4muilc0t3",
+  "client-token": "lzsjjh3l5o4pnz265tqy",
+  "client-version-token": "p1ksed0ntpvhqd54ktzn",
   "api-version": "4.0",
   locale: "sv_SE",
 };
 
 /**
  * Get menu for a school
- * @param {number} id The school id
+ * @param {string} id The school id
  * @param {number} year The requested year
  * @param {number} week The requested week
  * @returns A structured response containing menu information
  */
-export async function getMenu(id: number, year: number, week: number): Promise<MenuResponse> {
-  const url: string = `${entrypoint}menu/?station=${id}&year=${year}&weekOfYear=${week}&count=1`;
+export async function getMenu(id: string, year: number, week: number): Promise<MenuResponse> {
+  const url: string = `${entrypoint}menu/?station=${id}&year=${year}&weekOfYear=${week}&count=1&attributes=false`;
   const response: Response = await fetch(url, {
     headers: headers,
   });
 
   if (!response.ok) {
-    throw new Error(`${response.status}: ${response.statusText}`);
+    throw new Error(`${response.status}: ${JSON.stringify(await response.json())}`);
   }
 
   const data: MenuResponse = await response.json();

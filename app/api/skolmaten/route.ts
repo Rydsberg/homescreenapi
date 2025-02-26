@@ -10,12 +10,12 @@ function getWeek(date: Date) {
 const weekdays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"];
 
 export async function GET(req: Request) {
-  const id = new URL(req.url).searchParams.get("id") ?? "6561775671574528";
+  const id = new URL(req.url).searchParams.get("id") ?? "3e5ac703-3f09-411f-abd4-e54839f96be3";
   if (!id) {
     return Response.json({ error: "Missing school id" }, { status: 400 });
   }
   const now = new Date();
-  const { days } = (await getMenu(+id, now.getFullYear(), getWeek(now))).menu.weeks[0];
+  const { days } = (await getMenu(id, now.getFullYear(), getWeek(now))).menu.weeks[0];
   const data = days.map(day => {
     const isoDateStrForDay = `${day.year}-${day.month}-${day.day}`;
     const date = new Date(isoDateStrForDay);
